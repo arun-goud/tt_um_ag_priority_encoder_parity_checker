@@ -9,12 +9,37 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+The priority encoder with parity checker module does priority encoding of a 9-bit binary input into a 4-bit binary code and displays the decimal 
+equivalent of that code on the 7-segment display. Additionally it also does parity checking and outputs the resultant parity bit.
+
+It has 2 modes of operation for priority encoding and for parity checking:
+
+For priority encoding:
+1. Bit towards MSB takes precedence (when `uio_in[1]` is low).
+2. Bit towards LSB takes precedence (when `uio_in[1]` is high).
+
+For parity checking:
+1. Parity bit is 1 when input has even number of 1s and 0 otherwise (when `uio_in[2]` is low).
+2. Parity bit is 1 when input has odd number of 1s and 0 otherwise (when `uio_in[2]` is high).
+
+The following table summarizes the modes:
+
+| `uio_in[1]` | `uio_in[2]` | Mode                 | `ui + uio_in[0]` pins | `uio_in[7:4]` pins  | `uo_out` value                         |
+|-------------|-------------|----------------------|-----------------------|---------------------|----------------------------------------|
+| 0           | X           | MSB priority encode  | 9-bit Binary input    | 4-bit Priority code | 7-seg code = Priority code, parity bit |
+| 1           | X           | LSB priority encode  | 9-bit Binary input    | 4-bit Priority code | 7-seg code = Priority code, parity bit |
+| X           | 0           | Even parity flag     | 9-bit Binary input    | 4-bit Priority code | 7-seg code = Priority code, parity bit |
+| X           | 1           | Odd parity flag      | 9-bit Binary input    | 4-bit Priority code | 7-seg code = Priority code, parity bit |
+
+The parity bit controls the DP pin of the 7-segment display.
 
 ## How to test
 
-Explain how to use your project
-
-## External hardware
-
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+1. Set `uio_in[1]` low and observe that the priority code of `{uio_in[0], ui_in}` with MSB having higher priority is output on the output pins 
+   (`uio_out[7:4]`) and on the 7-segment display connected to `uo_out`.
+2. Set `uio_in[1]` high and observe that the priority code of `{uio_in[0], ui_in}` with LSB having higher priority is output on the output pins 
+   (`uio_out[7:4]`) and on the 7-segment display connected to `uo_out`.
+3. Set `uio_in[2]` low and observe that the parity bit `uio_out[3]` is getting set when the input `{uio_in[0], ui_in}` has even number of 1s.
+   The DP on 7-segment display should light up when parity bit is 1.
+4. Set `uio_in[2]` high and observe that the parity bit `uio_out[3]` is getting set when the input `{uio_in[0], ui_in}` has odd number of 1s.
+   The DP on 7-segment display should light up when parity bit is 1.
