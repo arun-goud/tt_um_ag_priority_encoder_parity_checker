@@ -9,7 +9,7 @@ The Priority Encoder with Parity Checker is a Verilog module written for [Tiny T
 
 - Tile area: 161.0um x 111.52um
 - Stdcell count: 113 (excluding FILL and TAP cells)
-- Routing utilization: 6%
+- Routing utilization: ~6%
 - Digital Vdd: 1.8V
 - Max Clk freq supported by TT: 66 MHz
 - No. of input pins used: 11 

@@ -24,14 +24,15 @@ For parity checking:
 
 The following table summarizes the modes:
 
-| `uio_in[1]` | `uio_in[2]` | Mode                 | `ui + uio_in[0]` pins | `uio_in[7:4]` pins  | `uo_out` value                         |
-|-------------|-------------|----------------------|-----------------------|---------------------|----------------------------------------|
-| 0           | X           | MSB priority encode  | 9-bit Binary input    | 4-bit Priority code | 7-seg code = Priority code, parity bit |
-| 1           | X           | LSB priority encode  | 9-bit Binary input    | 4-bit Priority code | 7-seg code = Priority code, parity bit |
-| X           | 0           | Even parity flag     | 9-bit Binary input    | 4-bit Priority code | 7-seg code = Priority code, parity bit |
-| X           | 1           | Odd parity flag      | 9-bit Binary input    | 4-bit Priority code | 7-seg code = Priority code, parity bit |
+| `uio_in[1]` | `uio_in[2]` | Mode                 |
+|-------------|-------------|----------------------|
+| 0           | X           | MSB priority encode  |
+| 1           | X           | LSB priority encode  |
+| X           | 0           | Even parity flag     |
+| X           | 1           | Odd parity flag      |
 
 For all the modes listed above the inputs and outputs are:
+
 | `ui + uio_in[0]` pins | `uio_in[7:4]` pins  | `uo_out` value                         |
 |-----------------------|---------------------|----------------------------------------|
 | 9-bit Binary input    | 4-bit Priority code | 7-seg code = Priority code, parity bit |
