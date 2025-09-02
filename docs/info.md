@@ -31,6 +31,11 @@ The following table summarizes the modes:
 | X           | 0           | Even parity flag     | 9-bit Binary input    | 4-bit Priority code | 7-seg code = Priority code, parity bit |
 | X           | 1           | Odd parity flag      | 9-bit Binary input    | 4-bit Priority code | 7-seg code = Priority code, parity bit |
 
+For all the modes listed above the inputs and outputs are:
+| `ui + uio_in[0]` pins | `uio_in[7:4]` pins  | `uo_out` value                         |
+|-----------------------|---------------------|----------------------------------------|
+| 9-bit Binary input    | 4-bit Priority code | 7-seg code = Priority code, parity bit |
+
 The parity bit controls the DP pin of the 7-segment display.
 
 ## How to test
